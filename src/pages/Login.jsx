@@ -191,40 +191,145 @@
 //   );
 // }
 
+// import { useState } from "react";
+// import axios from "../services/axiosInstance";
+// import { useNavigate, Link } from "react-router-dom";
+// import "../auth.css";
+
+// export default function Login() {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const navigate = useNavigate();
+
+//   const handleLogin = async (e) => {
+//     e.preventDefault();
+//     try {
+//       const res = await axios.post("/auth/login", {
+//         email,
+//         password,
+//       });
+
+//       localStorage.setItem("token", res.data.data.token);
+//       navigate("/dashboard");
+//     } catch (err) {
+//       console.error(err);
+//       alert("Login failed");
+//     }
+//   };
+
+//   return (
+//     <div className="page-wrapper">
+      
+//       {/* Navbar */}
+//       <nav className="navbar">
+//         <h2 className="logo">JobTracker</h2>
+//         <div className="nav-buttons">
+//           <button className="nav-btn active">Login</button>
+//           <Link to="/register" className="nav-btn outline">
+//             Register
+//           </Link>
+//         </div>
+//       </nav>
+
+//       {/* Login Card */}
+//       <div className="auth-container">
+//         <div className="auth-card">
+//           <h2 className="card-title">Sign In</h2>
+
+//           <form onSubmit={handleLogin}>
+//             <div className="input-group">
+//               <label>Email</label>
+//               <input
+//                 type="email"
+//                 value={email}
+//                 onChange={(e) => setEmail(e.target.value)}
+//                 required
+//               />
+//             </div>
+
+//             <div className="input-group">
+//               <label>Password</label>
+//               <input
+//                 type="password"
+//                 value={password}
+//                 onChange={(e) => setPassword(e.target.value)}
+//                 required
+//               />
+//             </div>
+
+//             <button type="submit" className="primary-btn">
+//               Sign In
+//             </button>
+//           </form>
+
+//           <p className="bottom-text">
+//             Don’t have an account?{" "}
+//             <Link to="/register" className="register-link">
+//               Register
+//             </Link>
+//           </p>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 import { useState } from "react";
 import axios from "../services/axiosInstance";
 import { useNavigate, Link } from "react-router-dom";
 import "../auth.css";
 
 export default function Login() {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
+
     e.preventDefault();
+
     try {
+
       const res = await axios.post("/auth/login", {
         email,
-        password,
+        password
       });
 
-      localStorage.setItem("token", res.data.data.token);
-      navigate("/dashboard");
+      const { token, user } = res.data.data;
+
+      // store token
+      localStorage.setItem("token", token);
+
+      // store user
+      localStorage.setItem("user", JSON.stringify(user));
+
+      // redirect based on role
+      if (user.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/dashboard");
+      }
+
     } catch (err) {
+
       console.error(err);
       alert("Login failed");
+
     }
+
   };
 
   return (
     <div className="page-wrapper">
-      
+
       {/* Navbar */}
       <nav className="navbar">
         <h2 className="logo">JobTracker</h2>
+
         <div className="nav-buttons">
           <button className="nav-btn active">Login</button>
+
           <Link to="/register" className="nav-btn outline">
             Register
           </Link>
@@ -233,33 +338,42 @@ export default function Login() {
 
       {/* Login Card */}
       <div className="auth-container">
+
         <div className="auth-card">
+
           <h2 className="card-title">Sign In</h2>
 
           <form onSubmit={handleLogin}>
+
             <div className="input-group">
               <label>Email</label>
+
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
+
             </div>
 
             <div className="input-group">
+
               <label>Password</label>
+
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+
             </div>
 
             <button type="submit" className="primary-btn">
               Sign In
             </button>
+
           </form>
 
           <p className="bottom-text">
@@ -268,8 +382,11 @@ export default function Login() {
               Register
             </Link>
           </p>
+
         </div>
+
       </div>
+
     </div>
   );
 }

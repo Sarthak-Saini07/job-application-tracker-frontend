@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <header className="header">
-      <h2 className="logo">JobTracker</h2>
+      <h2 className="logo">Jobsy</h2>
 
       <div className="header-right">
         <div

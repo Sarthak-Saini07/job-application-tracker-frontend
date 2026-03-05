@@ -463,7 +463,7 @@ export default function Dashboard() {
         )}
 
         <div className="add-job-card">
-          <h3>Add Job</h3>
+          <h3>Add Application</h3>
           <form onSubmit={handleAddJob}>
             <input
               type="text"
@@ -485,7 +485,7 @@ export default function Dashboard() {
           </form>
         </div>
 
-        <h3>My Jobs</h3>
+        <h3>My Applications</h3>
 
         {jobs.map((job) => (
           <div key={job._id} className="job-card">

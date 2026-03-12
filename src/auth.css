@@ -1,0 +1,255 @@
+/* .auth-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  font-family: Arial, sans-serif;
+}
+
+.auth-card {
+  background: white;
+  padding: 40px;
+  width: 360px;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.auth-card h2 {
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 25px;
+}
+
+.input-group {
+  margin-bottom: 18px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #4f46e5;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background: #4338ca;
+}
+
+.switch-text {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.switch-text a {
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: bold;
+} */
+ /* Remove global scroll */
+/* body {
+  margin: 0;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+/* Remove scroll */
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.page-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f3f4f6;
+}
+
+/* Navbar */
+.navbar {
+  height: 70px;
+  background: linear-gradient(90deg, #1f1c2c, #2c2a4a);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  color: white;
+}
+
+.logo {
+  color: #ff4d6d;
+  margin: 0;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-btn.active {
+  background: #ff4d6d;
+  color: white;
+}
+
+.nav-btn.outline {
+  background: transparent;
+  border: 1px solid #ff4d6d;
+  color: #ff4d6d;
+}
+
+/* Center container */
+.auth-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card */
+.auth-card {
+  background: white;
+  width: 350px;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Inputs */
+.input-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.input-group input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: 0.2s;
+}
+
+.input-group input:focus {
+  border-color: #ff4d6d;
+  box-shadow: 0 0 0 2px rgba(255, 77, 109, 0.2);
+}
+
+/* Primary button */
+.primary-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #ff4d6d;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.primary-btn:hover {
+  background: #e63956;
+}
+
+/* Bottom text */
+.bottom-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.register-link {
+  color: #ff4d6d;
+  text-decoration: none;
+  font-weight: bold;
+}
+.primary-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #ff4d6d;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.primary-btn:hover {
+  background: #e63956;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(230, 57, 86, 0.3);
+}
+
+/* Click effect */
+.primary-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+.nav-btn {
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+/* Hover for outline button */
+.nav-btn.outline:hover {
+  background: #ff4d6d;
+  color: white;
+}
+
+/* Hover for active button */
+.nav-btn.active:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}

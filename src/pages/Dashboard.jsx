@@ -389,14 +389,17 @@ export default function Dashboard() {
   const [companyName, setCompanyName] = useState("");
   const [role, setRole] = useState("");
 
-  const fetchJobs = async () => {
-    const res = await axios.get("/jobs");
-    setJobs(res.data.data);
-  };
+  // Load data
+  const loadData = async () => {
+    try {
+      const jobsRes = await axios.get("/jobs");
+      const statsRes = await axios.get("/jobs/stats");
 
-  const fetchStats = async () => {
-    const res = await axios.get("/jobs/stats");
-    setStats(res.data.data);
+      setJobs(jobsRes.data.data);
+      setStats(statsRes.data.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleAddJob = async (e) => {

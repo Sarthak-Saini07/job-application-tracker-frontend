@@ -52,7 +52,7 @@ import { useState } from "react";
 import axios from "../services/axiosInstance";
 import { useNavigate, Link } from "react-router-dom";
 import "../auth.css";
-
+import { toast } from "react-toastify";
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -67,11 +67,14 @@ export default function Register() {
     e.preventDefault();
     try {
       await axios.post("/auth/register", form);
+      toast.success("Registration successful");
       navigate("/login");
     } catch (err) {
       console.error(err);
-      alert("Registration failed");
+        toast.error("Registration failed");
+      // alert("Registration failed");
     }
+    
   };
   // return (
   //   <div>

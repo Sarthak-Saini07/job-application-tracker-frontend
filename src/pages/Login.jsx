@@ -277,7 +277,7 @@ import { useState } from "react";
 import axios from "../services/axiosInstance";
 import { useNavigate, Link } from "react-router-dom";
 import "../auth.css";
-
+import { toast } from "react-toastify";
 export default function Login() {
 
   const [email, setEmail] = useState("");
@@ -306,15 +306,18 @@ export default function Login() {
 
       // redirect based on role
       if (user.role === "admin") {
+        toast.success("Admin Logged in successfully");;
         navigate("/admin");
       } else {
+        toast.success("User Logged in successfully");
         navigate("/dashboard");
       }
 
     } catch (err) {
 
       console.error(err);
-      alert("Login failed");
+      // alert("Login failed");
+      toast.error("Login failed");
 
     }
 

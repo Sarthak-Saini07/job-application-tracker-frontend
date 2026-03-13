@@ -1,39 +1,25 @@
-import axios from "axios";
-
-const API = "http://localhost:5000/api/admin";
+import axiosInstance from "./axiosInstance";
 
 export const getAdminStats = async (token) => {
-  return axios.get(`${API}/stats`, {
-    headers: { Authorization: `Bearer ${token}` }
-  });
+  return axiosInstance.get(`/admin/stats`);
 };
 
 export const getUsers = async (token) => {
-  return axios.get(`${API}/users`, {
-    headers: { Authorization: `Bearer ${token}` }
-  });
+  return axiosInstance.get(`/admin/users`);
 };
 
 export const deleteUser = async (id, token) => {
-  return axios.delete(`${API}/user/${id}`, {
-    headers: { Authorization: `Bearer ${token}` }
-  });
+  return axiosInstance.delete(`/admin/user/${id}`);
 };
 
 export const getNotifications = async (token) => {
-  return axios.get(`${API}/notifications`, {
-    headers: { Authorization: `Bearer ${token}` }
-  });
+  return axiosInstance.get(`/admin/notifications`);
 };
 
 export const getAllJobs = async (token) => {
-  return axios.get(`${API}/jobs`, {
-    headers: { Authorization: `Bearer ${token}` }
-  });
+  return axiosInstance.get(`/admin/jobs`);
 };
 
 export const updateJobStatus = async (id, status, token) => {
-  return axios.put(`${API}/job/${id}/status`, { status }, {
-    headers: { Authorization: `Bearer ${token}` }
-  });
+  return axiosInstance.put(`/admin/job/${id}/status`, { status });
 };

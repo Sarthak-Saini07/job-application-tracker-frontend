@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getNotifications } from "../services/adminApi";
 import AdminSidebar from "../components/AdminSidebar";
+import Header from "../components/Header";
 
 function AdminNotifications() {
 
@@ -23,25 +24,33 @@ function AdminNotifications() {
   }, []);
 
   return (
-    <div style={{ display: "flex" }}>
+    <>
+      <Header />
+      <div className="admin-layout">
+        <AdminSidebar />
 
-      <AdminSidebar />
+        <div className="admin-content">
+          <h1 className="admin-header">System Notifications</h1>
 
-      <div style={{ padding: "20px" }}>
-
-        <h1>Notifications</h1>
-
-        {notifications.map((n) => (
-
-          <div key={n._id}>
-            <p>{n.message}</p>
+          <div className="notification-list">
+            {notifications.length === 0 ? (
+              <p style={{color: '#64748b'}}>No recent notifications.</p>
+            ) : (
+              notifications.map((n) => (
+                <div key={n._id} className="notification-card">
+                  <div className="notification-icon">
+                    {n.type === 'JOB_CREATED' ? '📝' : '🔔'}
+                  </div>
+                  <div style={{flex: 1}}>
+                    <p style={{margin: 0, fontSize: '15px', color: '#334155', fontWeight: '500'}}>{n.message}</p>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
-
-        ))}
-
+        </div>
       </div>
-
-    </div>
+    </>
   );
 }
 

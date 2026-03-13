@@ -1,20 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import "../admin.css";
 
 function AdminSidebar() {
+  const location = useLocation();
+
   return (
-    <div style={{ width: "200px", padding: "20px", background: "#eee" }}>
-      <h2>Admin</h2>
+    <div className="admin-sidebar">
+      <h2>Jobsy Admin</h2>
 
-      <div>
-        <Link to="/admin">Dashboard</Link>
-      </div>
-
-      <div>
-        <Link to="/admin/users">Users</Link>
-      </div>
-
-      <div>
-        <Link to="/admin/notifications">Notifications</Link>
+      <div className="admin-nav">
+        <Link to="/admin" className={location.pathname === "/admin" ? "active" : ""}>
+          📊 Dashboard
+        </Link>
+        <Link to="/admin/jobs" className={location.pathname === "/admin/jobs" ? "active" : ""}>
+          💼 Jobs
+        </Link>
+        <Link to="/admin/users" className={location.pathname === "/admin/users" ? "active" : ""}>
+          👥 Users
+        </Link>
+        <Link to="/admin/notifications" className={location.pathname === "/admin/notifications" ? "active" : ""}>
+          🔔 Notifications
+        </Link>
       </div>
     </div>
   );

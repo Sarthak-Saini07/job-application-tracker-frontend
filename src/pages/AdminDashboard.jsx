@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAdminStats } from "../services/adminApi";
 import AdminSidebar from "../components/AdminSidebar";
+import Header from "../components/Header";
 
 function AdminDashboard() {
 
@@ -23,24 +24,51 @@ function AdminDashboard() {
   }, []);
 
   return (
-    <div style={{ display: "flex" }}>
+    <>
+      <Header />
+      <div className="admin-layout">
+        <AdminSidebar />
 
-      <AdminSidebar />
+        <div className="admin-content">
+          <h1 className="admin-header">Dashboard Overview</h1>
 
-      <div style={{ padding: "20px" }}>
+          <div className="admin-glass-card">
+            <div className="admin-stats-grid">
+              <div className="admin-stat-item">
+                <span className="admin-stat-value">{stats.totalUsers || 0}</span>
+                <span className="admin-stat-label">Total Users</span>
+              </div>
+              
+              <div className="admin-stat-item">
+                <span className="admin-stat-value">{stats.totalJobs || 0}</span>
+                <span className="admin-stat-label">Total Jobs</span>
+              </div>
+              
+              <div className="admin-stat-item">
+                <span className="admin-stat-value" style={{color: '#4338ca'}}>{stats.applied || 0}</span>
+                <span className="admin-stat-label">Applied</span>
+              </div>
+              
+              <div className="admin-stat-item">
+                <span className="admin-stat-value" style={{color: '#854d0e'}}>{stats.interview || 0}</span>
+                <span className="admin-stat-label">Interviewing</span>
+              </div>
+              
+              <div className="admin-stat-item">
+                <span className="admin-stat-value" style={{color: '#166534'}}>{stats.offer || 0}</span>
+                <span className="admin-stat-label">Offers</span>
+              </div>
+              
+              <div className="admin-stat-item">
+                <span className="admin-stat-value" style={{color: '#b91c1c'}}>{stats.rejected || 0}</span>
+                <span className="admin-stat-label">Rejected</span>
+              </div>
+            </div>
+          </div>
 
-        <h1>Admin Dashboard</h1>
-
-        <p>Total Users: {stats.totalUsers}</p>
-        <p>Total Jobs: {stats.totalJobs}</p>
-        <p>Applied: {stats.applied}</p>
-        <p>Interview: {stats.interview}</p>
-        <p>Offer: {stats.offer}</p>
-        <p>Rejected: {stats.rejected}</p>
-
+        </div>
       </div>
-
-    </div>
+    </>
   );
 }
 

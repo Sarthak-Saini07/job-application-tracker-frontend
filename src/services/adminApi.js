@@ -25,3 +25,15 @@ export const getNotifications = async (token) => {
     headers: { Authorization: `Bearer ${token}` }
   });
 };
+
+export const getAllJobs = async (token) => {
+  return axios.get(`${API}/jobs`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+};
+
+export const updateJobStatus = async (id, status, token) => {
+  return axios.put(`${API}/job/${id}/status`, { status }, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+};

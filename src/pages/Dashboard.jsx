@@ -381,13 +381,13 @@
 import { useEffect, useState } from "react";
 import axios from "../services/axiosInstance";
 import Header from "../components/Header";
+import JobList from "../components/JobList";
+import JobForm from "../components/JobForm";
 import "../dashboard.css";
 
 export default function Dashboard() {
   const [jobs, setJobs] = useState([]);
   const [stats, setStats] = useState(null);
-  const [companyName, setCompanyName] = useState("");
-  const [role, setRole] = useState("");
 
   // Load data
   const loadData = async () => {
@@ -402,36 +402,25 @@ export default function Dashboard() {
     }
   };
 
-  const handleAddJob = async (e) => {
-    e.preventDefault();
-    await axios.post("/jobs", { companyName, role });
-    setCompanyName("");
-    setRole("");
-    fetchJobs();
-    fetchStats();
-  };
-
-  const handleDelete = async (id) => {
-    await axios.delete(`/jobs/${id}`);
-    fetchJobs();
-    fetchStats();
-  };
-
-  useEffect(() => {
-  const loadData = async () => {
+  const handleAddJob = async (jobData) => {
     try {
-      const jobsRes = await axios.get("/jobs");
-      const statsRes = await axios.get("/jobs/stats");
-
-      setJobs(jobsRes.data.data);
-      setStats(statsRes.data.data);
+      await axios.post("/jobs", jobData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      loadData();
     } catch (err) {
       console.error(err);
     }
   };
 
-  loadData();
-}, []);
+  const handleDelete = async (id) => {
+    await axios.delete(`/jobs/${id}`);
+    loadData();
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
   return (
     <>
       <Header />
@@ -465,45 +454,10 @@ export default function Dashboard() {
           </div>
         )}
 
-        <div className="add-job-card">
-          <h3>Add Application</h3>
-          <form onSubmit={handleAddJob}>
-            <input
-              type="text"
-              placeholder="Company Name"
-              value={companyName}
-              onChange={(e) => setCompanyName(e.target.value)}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Role"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              required
-            />
-            <button type="submit" className="add-btn">
-              Add
-            </button>
-          </form>
-        </div>
+        <JobForm onAddJob={handleAddJob} />
 
         <h3>My Applications</h3>
-
-        {jobs.map((job) => (
-          <div key={job._id} className="job-card">
-            <div>
-              <strong>{job.companyName}</strong> — {job.role} — {job.status}
-            </div>
-
-            <button
-              className="delete-btn"
-              onClick={() => handleDelete(job._id)}
-            >
-              Delete
-            </button>
-          </div>
-        ))}
+        <JobList jobs={jobs} onDelete={handleDelete} />
       </div>
     </>
   );

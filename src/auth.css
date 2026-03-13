@@ -78,9 +78,9 @@
 }
 
 /* Remove scroll */
+/* Remove scroll constraint from here, let index.css handle body */
 body {
   margin: 0;
-  overflow: hidden;
   font-family: Arial, sans-serif;
 }
 

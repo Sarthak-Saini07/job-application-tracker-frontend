@@ -3,7 +3,7 @@ import axios from "../services/axiosInstance";
 import { useNavigate, Link } from "react-router-dom";
 import "../auth.css";
 import { toast } from "react-toastify";
-
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 export default function Register() {
   const [form, setForm] = useState({
     name: "",
@@ -13,7 +13,7 @@ export default function Register() {
 
   const [otp, setOtp] = useState("");
   const [step, setStep] = useState(1); // 1: Register, 2: Verification
-
+const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
@@ -119,16 +119,28 @@ export default function Register() {
               </div>
 
               <div className="input-group">
-                <label>Password</label>
-                <input
-                  type="password"
-                  value={form.password}
-                  onChange={(e) =>
-                    setForm({ ...form, password: e.target.value })
-                  }
-                  required
-                />
-              </div>
+  <label>Password</label>
+
+  <div className="password-field">
+
+    <input
+      type={showPassword ? "text" : "password"}
+      value={form.password}
+      onChange={(e) =>
+        setForm({ ...form, password: e.target.value })
+      }
+      required
+    />
+
+    <span
+      className="password-toggle"
+      onClick={() => setShowPassword(!showPassword)}
+    >
+      {showPassword ? <FaEyeSlash /> : <FaEye />}
+    </span>
+
+  </div>
+</div>
 
               <button type="submit" className="primary-btn">
                 Register

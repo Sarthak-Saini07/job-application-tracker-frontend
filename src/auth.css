@@ -196,3 +196,21 @@
   color: var(--primary-hover);
   text-decoration: underline;
 }
+.password-field {
+  position: relative;
+  width: 100%;
+}
+
+.password-field input {
+  width: 86%;
+  padding-right: 40px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #555;
+}

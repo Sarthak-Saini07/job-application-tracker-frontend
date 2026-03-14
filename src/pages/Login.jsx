@@ -341,12 +341,12 @@ import axios from "../services/axiosInstance";
 import { useNavigate, Link } from "react-router-dom";
 import "../auth.css";
 import { toast } from "react-toastify";
-
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [showPassword, setShowPassword] = useState(false);
   const [otpStep, setOtpStep] = useState(false);
   const [otp, setOtp] = useState("");
 
@@ -478,18 +478,27 @@ export default function Login() {
 
             {!otpStep && (
 
-              <div className="input-group">
+             <div className="input-group">
+  <label>Password</label>
 
-                <label>Password</label>
+  <div className="password-field">
 
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+    <input
+      type={showPassword ? "text" : "password"}
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      required
+    />
 
-              </div>
+    <span
+      className="password-toggle"
+      onClick={() => setShowPassword(!showPassword)}
+    >
+      {showPassword ? <FaEyeSlash /> : <FaEye />}
+    </span>
+
+  </div>
+</div>
 
             )}
 

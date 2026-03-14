@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://job-application-tracker-backend-1-u0vp.onrender.com",
+  baseURL: "http://localhost:5000",
 });
 
 axiosInstance.interceptors.request.use((config) => {

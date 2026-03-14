@@ -1,64 +1,63 @@
-/* Admin Interface Premium Glassmorphism Theme */
+/* Admin Interface Premium Theme - Harmonized with Main Theme */
 
 .admin-layout {
   display: flex;
-  min-height: 100vh;
-  background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%, #e0c3fc 0%, #8ec5fc 100%);
-  background-attachment: fixed;
+  min-height: calc(100vh - 70px); /* Subtract header height */
+  background-color: var(--bg-color); /* Same as main app now */
   font-family: 'Inter', sans-serif;
-  color: #0f172a;
+  color: var(--text-main);
 }
 
-/* Glass Sidebar */
+/* Sidebar */
 .admin-sidebar {
   width: 260px;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-right: 1px solid rgba(255, 255, 255, 0.6);
+  background: white;
+  border-right: 1px solid var(--border-color);
   padding: 30px 20px;
   display: flex;
   flex-direction: column;
-  box-shadow: 4px 0 24px rgba(31, 38, 135, 0.05);
   z-index: 10;
 }
 
 .admin-sidebar h2 {
   font-family: 'Outfit', sans-serif;
   font-weight: 800;
-  font-size: 24px;
-  background: linear-gradient(135deg, #38bdf8, #818cf8, #e879f9);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 20px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
   margin-top: 0;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   padding-left: 10px;
 }
 
 .admin-nav {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .admin-nav a {
   text-decoration: none;
-  color: #475569;
+  color: var(--text-muted);
   font-weight: 600;
-  padding: 14px 20px;
-  border-radius: 12px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  transition: all 0.2s;
   display: flex;
   align-items: center;
   gap: 12px;
+  font-size: 15px;
 }
 
-.admin-nav a:hover, .admin-nav a.active {
-  background: rgba(255, 255, 255, 0.7);
-  color: #3b82f6;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
-  transform: translateX(5px);
+.admin-nav a:hover {
+  background: #f1f5f9;
+  color: var(--text-main);
+}
+
+.admin-nav a.active {
+  background: var(--primary-light);
+  color: var(--primary-color);
 }
 
 /* Main Content Area */
@@ -72,63 +71,67 @@
   font-family: 'Outfit', sans-serif;
   font-size: 32px;
   font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 30px;
+  color: var(--text-main);
+  margin-bottom: 32px;
   margin-top: 0;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* Glass Cards */
+/* Cards */
 .admin-glass-card {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: white;
+  padding: 32px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
   margin-bottom: 30px;
   animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   opacity: 0;
+}
+
+@keyframes fadeSlideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 /* Dashboard Stats Grid */
 .admin-stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
+  gap: 32px;
 }
 
 .admin-stat-item {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
 }
 
 .admin-stat-value {
-  font-size: 42px;
+  font-size: 48px;
   font-family: 'Inter', sans-serif;
   font-weight: 800;
-  color: #3b82f6;
+  color: var(--text-main);
   line-height: 1;
 }
 
 .admin-stat-label {
-  font-size: 14px;
-  color: #64748b;
+  font-size: 13px;
+  color: var(--text-muted);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-/* Glass Table layout */
+/* Table layout */
 .glass-table-wrapper {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
   overflow: hidden;
   animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   opacity: 0;
@@ -141,22 +144,22 @@ table.glass-table {
 }
 
 table.glass-table th {
-  background: rgba(255, 255, 255, 0.6);
+  background: #f8fafc;
   padding: 16px 24px;
-  color: #475569;
-  font-size: 13px;
+  color: var(--text-muted);
+  font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 700;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
 }
 
 table.glass-table td {
   padding: 16px 24px;
-  color: #334155;
-  font-size: 15px;
+  color: var(--text-main);
+  font-size: 14px;
   font-weight: 500;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid #f1f5f9;
 }
 
 table.glass-table tr:last-child td {
@@ -168,29 +171,64 @@ table.glass-table tbody tr {
 }
 
 table.glass-table tbody tr:hover {
-  background: rgba(255, 255, 255, 0.4);
+  background: #f8fafc;
 }
 
-/* Glass Buttons */
-.btn-glass-danger {
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: 1px solid rgba(239, 68, 68, 0.4);
-  background: rgba(2ef, 68, 68, 0.1);
-  color: #ef4444;
-  font-weight: 600;
-  font-size: 14px;
+/* Table Actions Customization */
+table.glass-table select {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: white;
+  outline: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(4px);
+  color: var(--text-main);
+  font-weight: 500;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+}
+
+table.glass-table select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+}
+
+/* Status specific select colors could be handled inline via React, or globally here */
+/* In AdminJobs.jsx it's inline, which overrides this anyway. Kept generic here. */
+
+/* Danger Buttons in Tables */
+.btn-glass-danger {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  background: var(--danger-light);
+  color: var(--danger-color);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .btn-glass-danger:hover {
-  background: #ef4444;
+  background: var(--danger-color);
   color: white;
-  border-color: #ef4444;
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
-  transform: translateY(-1px);
+}
+
+/* Ensure CV links look premium */
+table.glass-table a {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+table.glass-table a:hover {
+  background-color: var(--primary-color);
+  color: white;
 }
 
 /* Notification List */
@@ -201,36 +239,43 @@ table.glass-table tbody tr:hover {
 }
 
 .notification-card {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 12px;
+  background: white;
+  border-radius: var(--radius-lg);
   padding: 20px 24px;
-  box-shadow: 0 4px 20px rgba(31, 38, 135, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
-  gap: 15px;
-  transition: all 0.3s ease;
+  gap: 16px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   animation: fadeSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   opacity: 0;
 }
 
 .notification-card:hover {
   transform: translateX(6px);
-  background: rgba(255, 255, 255, 0.7);
+  box-shadow: var(--shadow-md);
   border-color: #cbd5e1;
 }
 
 .notification-icon {
-  width: 40px;
-  height: 40px;
-  background: rgba(59, 130, 246, 0.1);
-  color: #3b82f6;
+  width: 44px;
+  height: 44px;
+  background: var(--primary-light);
+  color: var(--primary-color);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
   flex-shrink: 0;
+}
+
+.notification-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
 }

@@ -383,14 +383,17 @@ import axios from "../services/axiosInstance";
 import Header from "../components/Header";
 import JobList from "../components/JobList";
 import JobForm from "../components/JobForm";
+import SkeletonLoader from "../components/SkeletonLoader";
 import "../dashboard.css";
 
 export default function Dashboard() {
   const [jobs, setJobs] = useState([]);
   const [stats, setStats] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // Load data
   const loadData = async () => {
+    setLoading(true);
     try {
       const jobsRes = await axios.get("/jobs");
       const statsRes = await axios.get("/jobs/stats");
@@ -399,6 +402,8 @@ export default function Dashboard() {
       setStats(statsRes.data.data);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -429,7 +434,9 @@ export default function Dashboard() {
 
         <h2>Dashboard</h2>
 
-        {stats && (
+        {loading ? (
+          <SkeletonLoader type="stats" count={5} />
+        ) : stats && (
           <div className="stats-grid">
             <div className="stat-card">
               <h3>{stats.total}</h3>
@@ -457,7 +464,11 @@ export default function Dashboard() {
         <JobForm onAddJob={handleAddJob} />
 
         <h3>My Applications</h3>
-        <JobList jobs={jobs} onDelete={handleDelete} />
+        {loading ? (
+          <SkeletonLoader type="card" count={3} />
+        ) : (
+          <JobList jobs={jobs} onDelete={handleDelete} />
+        )}
       </div>
     </>
   );

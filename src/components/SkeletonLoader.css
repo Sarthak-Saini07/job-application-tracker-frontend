@@ -1,0 +1,73 @@
+/* Skeleton Pulse Animation */
+@keyframes skeleton-pulse {
+  0% {
+    background-color: rgba(226, 232, 240, 0.4);
+  }
+  50% {
+    background-color: rgba(203, 213, 225, 0.8);
+  }
+  100% {
+    background-color: rgba(226, 232, 240, 0.4);
+  }
+}
+
+.skeleton {
+  animation: skeleton-pulse 1.5s infinite ease-in-out;
+  border-radius: 8px;
+}
+
+/* Card Skeleton */
+.skeleton-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.skeleton-card {
+  padding: 20px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.skeleton-line {
+  height: 12px;
+  border-radius: 4px;
+  background-color: #cbd5e1;
+}
+
+.skeleton-line.title {
+  width: 40%;
+  height: 16px;
+}
+.skeleton-line.subtitle {
+  width: 70%;
+}
+.skeleton-line.status {
+  width: 20%;
+}
+
+/* Table Skeleton */
+.skeleton-table-wrapper {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton-table-header {
+  height: 48px;
+  border-radius: 12px;
+}
+
+.skeleton-table-row {
+  height: 60px;
+  border-radius: 12px;
+}
+
+/* Stats Skeleton */
+.skeleton-stat {
+  height: 100px;
+}

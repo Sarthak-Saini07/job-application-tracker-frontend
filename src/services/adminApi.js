@@ -12,8 +12,8 @@ export const deleteUser = async (id, token) => {
   return axiosInstance.delete(`/admin/user/${id}`);
 };
 
-export const getNotifications = async (token) => {
-  return axiosInstance.get(`/admin/notifications`);
+export const getNotifications = async (token, page = 1, limit = 10) => {
+  return axiosInstance.get(`/admin/notifications?page=${page}&limit=${limit}`);
 };
 
 export const getAllJobs = async (token) => {

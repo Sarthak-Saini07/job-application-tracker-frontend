@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getUsers, deleteUser } from "../services/adminApi";
 import AdminSidebar from "../components/AdminSidebar";
 import Header from "../components/Header";
+import SkeletonLoader from "../components/SkeletonLoader";
 import { toast } from "react-toastify";
 
 function AdminUsers() {
@@ -54,10 +55,6 @@ function AdminUsers() {
     }
   };
 
-  if (loading) {
-    return <h2>Loading users...</h2>;
-  }
-
   return (
     <>
       <Header />
@@ -67,47 +64,51 @@ function AdminUsers() {
         <div className="admin-content">
           <h1 className="admin-header">User Management</h1>
 
-          <div className="glass-table-wrapper">
-            <table className="glass-table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Role</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((user) => (
-                  <tr key={user._id}>
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
-                    <td>
-                      <span style={{ 
-                        padding: "4px 10px", 
-                        borderRadius: "12px", 
-                        background: user.role === 'admin' ? "rgba(139, 92, 246, 0.15)" : "rgba(59, 130, 246, 0.1)",
-                        color: user.role === 'admin' ? "#7c3aed" : "#3b82f6",
-                        fontSize: "12px",
-                        fontWeight: "bold",
-                        textTransform: "uppercase"
-                      }}>
-                        {user.role}
-                      </span>
-                    </td>
-                    <td>
-                      <button
-                        className="btn-glass-danger"
-                        onClick={() => handleDelete(user._id)}
-                      >
-                        Delete User
-                      </button>
-                    </td>
+          {loading ? (
+            <SkeletonLoader type="table" count={5} />
+          ) : (
+            <div className="glass-table-wrapper">
+              <table className="glass-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {users.map((user) => (
+                    <tr key={user._id}>
+                      <td>{user.name}</td>
+                      <td>{user.email}</td>
+                      <td>
+                        <span style={{ 
+                          padding: "4px 10px", 
+                          borderRadius: "12px", 
+                          background: user.role === 'admin' ? "rgba(139, 92, 246, 0.15)" : "rgba(59, 130, 246, 0.1)",
+                          color: user.role === 'admin' ? "#7c3aed" : "#3b82f6",
+                          fontSize: "12px",
+                          fontWeight: "bold",
+                          textTransform: "uppercase"
+                        }}>
+                          {user.role}
+                        </span>
+                      </td>
+                      <td>
+                        <button
+                          className="btn-glass-danger"
+                          onClick={() => handleDelete(user._id)}
+                        >
+                          Delete User
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
 
         </div>
       </div>

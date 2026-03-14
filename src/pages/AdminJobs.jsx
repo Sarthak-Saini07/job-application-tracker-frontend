@@ -118,7 +118,7 @@ function AdminJobs() {
                               fontWeight: "600"
                             }}
                           >
-                            Download CV
+                            View CV
                           </a>
                         ) : (
                           <span style={{ color: "#94a3b8", fontSize: "13px" }}>No CV</span>

@@ -430,7 +430,7 @@ export default function Login() {
 
       <nav className="navbar">
 
-        <h2 className="logo">JobTracker</h2>
+        <h2 className="logo">Jobsy</h2>
 
         <div className="nav-buttons">
 

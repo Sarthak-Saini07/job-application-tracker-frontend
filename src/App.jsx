@@ -31,7 +31,7 @@
 // }
 
 // export default App;
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
@@ -41,37 +41,40 @@ import AdminUsers from "./pages/AdminUsers";
 import AdminJobs from "./pages/AdminJobs";
 import AdminNotifications from "./pages/AdminNotifications";
 import VerifyOTP from "./pages/VerifyOTP";
-
 import { ToastContainer } from "react-toastify";
+import { AnimatePresence } from "framer-motion";
+import PageTransition from "./components/PageTransition";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  const location = useLocation();
 
   return (
-    <BrowserRouter>
+    <>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
 
-      <Routes>
+        <Route path="/" element={<PageTransition><Login /></PageTransition>} />
+        <Route path="/login" element={<PageTransition><Login /></PageTransition>} />
 
-        <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<PageTransition><Register /></PageTransition>} />
 
-        <Route path="/register" element={<Register />} />
+        <Route path="/verify-otp" element={<PageTransition><VerifyOTP /></PageTransition>} />
 
-        <Route path="/verify-otp" element={<VerifyOTP />} />
+        <Route path="/dashboard" element={<PageTransition><Dashboard /></PageTransition>} />
 
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<PageTransition><Profile /></PageTransition>} />
 
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/admin" element={<PageTransition><AdminDashboard /></PageTransition>} />
 
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/jobs" element={<PageTransition><AdminJobs /></PageTransition>} />
 
-        <Route path="/admin/jobs" element={<AdminJobs />} />
+        <Route path="/admin/users" element={<PageTransition><AdminUsers /></PageTransition>} />
 
-        <Route path="/admin/users" element={<AdminUsers />} />
+        <Route path="/admin/notifications" element={<PageTransition><AdminNotifications /></PageTransition>} />
 
-        <Route path="/admin/notifications" element={<AdminNotifications />} />
-
-      </Routes>
+        </Routes>
+      </AnimatePresence>
 
       <ToastContainer
         position="top-right"
@@ -81,7 +84,7 @@ function App() {
         theme="light"
       />
 
-    </BrowserRouter>
+    </>
   );
 
 }

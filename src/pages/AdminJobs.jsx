@@ -103,23 +103,26 @@ function AdminJobs() {
                         </select>
                       </td>
                       <td>
-                        <a
-  href={job.cvUrl.replace("/image/upload/", "/raw/upload/")}
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{
-    padding: "6px 12px",
-    borderRadius: "8px",
-    backgroundColor: "#3b82f6",
-    color: "white",
-    textDecoration: "none",
-    fontSize: "13px",
-    fontWeight: "600"
-  }}
->
-  View CV
-</a>
-
+                        {job.cvUrl ? (
+                          <a
+                            href={job.cvUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              padding: "6px 12px",
+                              borderRadius: "8px",
+                              backgroundColor: "#3b82f6",
+                              color: "white",
+                              textDecoration: "none",
+                              fontSize: "13px",
+                              fontWeight: "600"
+                            }}
+                          >
+                            Download CV
+                          </a>
+                        ) : (
+                          <span style={{ color: "#94a3b8", fontSize: "13px" }}>No CV</span>
+                        )}
                       </td>
                     </tr>
                   ))}

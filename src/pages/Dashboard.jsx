@@ -409,9 +409,7 @@ export default function Dashboard() {
 
   const handleAddJob = async (jobData) => {
     try {
-      await axios.post("/jobs", jobData, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
+      await axios.post("/jobs", jobData);
       loadData();
     } catch (err) {
       console.error(err);

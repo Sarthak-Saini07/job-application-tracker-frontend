@@ -48,12 +48,29 @@ export default function JobList({ jobs, onDelete }) {
                         </span>
                     </div>
 
-                    <button
-                        className="delete-btn"
-                        onClick={() => onDelete(job._id)}
-                    >
-                        Delete
-                    </button>
+                    <div style={{ display: "flex", gap: "10px" }}>
+                        {job.cvUrl && (
+                            <a
+                                href={job.cvUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="base-btn primary-btn-global"
+                                style={{
+                                    textDecoration: "none",
+                                    fontSize: "13px",
+                                    padding: "6px 12px",
+                                }}
+                            >
+                                Download CV
+                            </a>
+                        )}
+                        <button
+                            className="delete-btn"
+                            onClick={() => onDelete(job._id)}
+                        >
+                            Delete
+                        </button>
+                    </div>
                 </div>
             ))}
         </div>

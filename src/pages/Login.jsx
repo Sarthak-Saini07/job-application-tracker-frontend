@@ -349,6 +349,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [otpStep, setOtpStep] = useState(false);
   const [otp, setOtp] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -356,6 +357,7 @@ export default function Login() {
 
   const handleLogin = async (e) => {
   e.preventDefault();
+  setIsLoading(true);
 
   try {
 
@@ -380,11 +382,14 @@ export default function Login() {
   } catch (err) {
     console.error(err);
     toast.error(err.response?.data?.message || "Login failed");
+  } finally {
+    setIsLoading(false);
   }
 };
   /* ---------------- OTP VERIFY ---------------- */
 
   const verifyOtp = async () => {
+    setIsLoading(true);
 
     try {
 
@@ -419,6 +424,8 @@ export default function Login() {
       console.error(err);
       toast.error("Invalid OTP");
 
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -528,9 +535,10 @@ export default function Login() {
               type={otpStep ? "button" : "submit"}
               className="primary-btn"
               onClick={otpStep ? verifyOtp : undefined}
+              disabled={isLoading}
             >
-
-              {otpStep ? "Verify OTP" : "Sign In"}
+              {isLoading && <span className="spinner"></span>}
+              {isLoading ? "Please wait..." : (otpStep ? "Verify OTP" : "Sign In")}
 
             </button>
 
